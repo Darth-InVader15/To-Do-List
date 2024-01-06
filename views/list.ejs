@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+   <% if(kindOfDay === "Sunday" || kindOfDay === "Saturday"){ %>
+    <h1 style="color:purple"> <%=kindOfDay %>'s To Do List</h1>
+    <% } else { %>
+    <h1 style="color:red"> <%=kindOfDay %>'s To Do List</h1>
+    <% } %>
+
+    <ul>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li> 
+        <li>Iste maxime deserunt architecto autem porro libero at saepe ipsa</li>
+        <li>tempore unde officia ut necessitatibus ducimus in officiis minus cum beatae rem?</li>
+    </ul>
+
+    <form action="/" method="post">
+        <label for="newEntry">Enter New Task</label>
+        <input name="newEntry" id="newEntry" placeholder="Eat Food">
+        <button type="submit">Go!</button>
+    </form>
+    
+</body>
+</html>
