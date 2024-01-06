@@ -6,7 +6,8 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public")); 
 
-var task = [];
+let task = [];
+let itask = [];
 
 app.get("/", function(req, res) {
     var today = new Date();
@@ -19,17 +20,36 @@ app.get("/", function(req, res) {
 
     res.render("list", {
          kindOfDay: day,
-         newListItem: task
+         newListItem: task,
+         listName: "normal"
         });
 });
 
 app.post("/",function(req,res){
-    task.push(req.body.newEntry);
+    let lst = req.body.list;
+    console.log(lst);
 
-    res.redirect("/");
+    if(lst === "incognito")
+    {
+        itask.push(req.body.newEntry);
+        res.redirect("/incognito");
+    }
+    else{
+        task.push(req.body.newEntry);
+        res.redirect("/");
+    }
 
     // console.log(task);
 })
+
+app.get("/incognito", function(req,res){
+    res.render("list",{
+        kindOfDay: "Incognito Tasks",
+        newListItem: itask,
+        listName: "incognito"
+    })
+})
+
 
 app.listen(3001, function() {
     console.log("It's on");
